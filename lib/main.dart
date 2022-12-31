@@ -48,6 +48,10 @@ class _MyAppState extends State<MyApp> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.blue.shade900,
+        leading: Padding(
+          padding: const EdgeInsets.all(5),
+          child: Image.asset('assets/images/SaloniHeartFoundationLogo.png'),
+        ),
         title: Center(child: Text(titles.elementAt(selectedIndex))),
         actions: [
           IconButton(

@@ -14,25 +14,30 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      children: [
-        RoundedListTile(
-          title: 'Our Mission',
-          color: Colors.blue.shade900,
-          body: RichText(
-            text: TextSpan(
-              children: [
-                TextSpan(text: '• Patient Consultation: ', style: missionStyleBold),
-                TextSpan(text: 'Provide free unbiased consultation from the world\'s Top doctors to families of children with complex heart condition.\n', style: missionStyle),
-                TextSpan(text: '• Doctor Training: ', style: missionStyleBold),
-                TextSpan(text: 'Provide free unbiased consultation from the world\'s Top doctors to families of children with complex heart condition.\n', style: missionStyle),
-                TextSpan(text: '• Patient Consultation: ', style: missionStyleBold),
-                TextSpan(text: 'Provide free unbiased consultation from the world\'s Top doctors to families of children with complex heart condition.\n', style: missionStyle),
-              ]
+    return Container(
+      decoration: const BoxDecoration(
+        image: DecorationImage(image: AssetImage('assets/images/HomeBackground.jpg'), fit: BoxFit.cover),
+      ),
+      child: ListView(
+        children: [
+          RoundedListTile(
+            title: 'Our Mission',
+            color: Colors.blue.shade900.withOpacity(0.7),
+            body: RichText(
+              text: TextSpan(
+                children: [
+                  TextSpan(text: '• Patient Consultation: ', style: missionStyleBold),
+                  TextSpan(text: 'Provide free unbiased consultation from the world\'s top doctors to families of children with complex heart condition.\n', style: missionStyle),
+                  TextSpan(text: '\n• Doctor Training: ', style: missionStyleBold),
+                  TextSpan(text: 'Enable doctors from India to learn skills from the world\'s best pediatric cardio-thoracic surgeons and cardiologists so that children living in India can get the best care.\n', style: missionStyle),
+                  TextSpan(text: '\n• Medical Education: ', style: missionStyleBold),
+                  TextSpan(text: 'Provide scholarships to deserving scholars from economically weaker sections in India, for education in the field of medicine & science.', style: missionStyle),
+                ]
+              ),
             ),
           ),
-        )
-      ],
+        ],
+      ),
     );
   }
 }
