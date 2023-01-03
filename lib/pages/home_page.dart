@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../util/listtile.dart';
+import '../util/listtiles.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -9,8 +9,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  TextStyle missionStyle = TextStyle(fontSize: 15, color: Colors.white);
-  TextStyle missionStyleBold = TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: Colors.white);
+  TextStyle missionStyle = const TextStyle(fontSize: 15, color: Colors.white);
+  TextStyle missionStyleBold = const TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: Colors.white);
 
   @override
   Widget build(BuildContext context) {
@@ -36,6 +36,17 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
           ),
+          RoundedListTile(
+              title: 'Events',
+              color: Colors.blue.shade900.withOpacity(0.7),
+              body: Column(
+                children: [
+                  ListTile(
+
+                  ),
+                ],
+              )
+          )
         ],
       ),
     );

@@ -30,6 +30,7 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.3
+  webview_flutter: ^4.0.1
 
 dev_dependencies:
   flutter_test:
@@ -43,6 +44,10 @@ flutter:
   assets:
    - assets/images/SaloniHeartFoundationLogo.png
    - assets/images/HomeBackground.jpg
+   - assets/images/InfoImage1.jpg
+#   - assets/images/InfoImage2.jpg
+   - assets/images/InfoImage3.jpg
+   - assets/images/InfoImage5.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

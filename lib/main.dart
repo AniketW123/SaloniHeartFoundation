@@ -8,14 +8,15 @@ import 'package:saloni_heart_foundation/util/alerts.dart';
 import 'pages/home_page.dart';
 
 void main() {
-  runApp(MaterialApp(
+  WidgetsFlutterBinding.ensureInitialized();
+  runApp(const MaterialApp(
     title: 'Saloni Heart Foundation',
-    theme: ThemeData(
-      primarySwatch: Colors.pink,
-    ),
     home: MyApp(),
   ));
 }
+
+String language = 'EN';
+String languageDropdownValue = 'EN';
 
 class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -25,9 +26,6 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  String language = 'EN';
-  String languageDropdownValue = 'EN';
-
   int selectedIndex = 0;
   List<Widget> pages = [HomePage(), InformationPage(), ContactPage(), DonatePage()];
   List<String> titles = ['Home', 'Information', 'Contact', 'Donate'];
@@ -138,9 +136,7 @@ class _MyAppState extends State<MyApp> {
         },
       ),
       body: SafeArea(
-        child: Center(
-          child: pages.elementAt(selectedIndex),
-        ),
+        child: pages.elementAt(selectedIndex),
       ),
     );
   }

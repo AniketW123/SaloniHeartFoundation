@@ -30,3 +30,32 @@ class RoundedListTile extends StatelessWidget {
   }
 }
 
+class ImageListTile extends StatelessWidget {
+  final String image;
+  final Widget body;
+  final EdgeInsetsGeometry? padding;
+  final VoidCallback? onPressed;
+
+  ImageListTile({required this.image, required this.body, this.padding, this.onPressed});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: padding ?? const EdgeInsets.all(0),
+      child: GestureDetector(
+        onTap: onPressed,
+        child: Stack(
+          alignment: Alignment.center,
+          children: [
+            FittedBox(
+              fit: BoxFit.fill,
+              child: Image.asset(image),
+            ),
+            body,
+          ],
+        ),
+      ),
+    );
+  }
+}
+
