@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:saloni_heart_foundation/util/alerts.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
-class InformationWebView extends StatefulWidget {
+class ParentPortalWebView extends StatefulWidget {
   final String page;
-  const InformationWebView({Key? key, required this.page}) : super(key: key);
+  const ParentPortalWebView({Key? key, required this.page}) : super(key: key);
 
   @override
-  State<InformationWebView> createState() => _InformationWebViewState();
+  State<ParentPortalWebView> createState() => _ParentPortalWebViewState();
 }
 
-class _InformationWebViewState extends State<InformationWebView> {
+class _ParentPortalWebViewState extends State<ParentPortalWebView> {
   late String page = widget.page;
   late WebViewController controller;
   int progress = 0;
@@ -42,7 +42,7 @@ class _InformationWebViewState extends State<InformationWebView> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.blue.shade900,
-        title: const Center(child: Text('Information')),
+        title: const Center(child: Text('Parent Portal')),
         actions: [
           IconButton(
             onPressed: () {
@@ -72,10 +72,10 @@ class _InformationWebViewState extends State<InformationWebView> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Container(
+                  const SizedBox(
                     width: 100,
                     height: 100,
-                    child: const CircularProgressIndicator(color: Colors.black, strokeWidth: 10,)
+                    child: CircularProgressIndicator(color: Colors.black, strokeWidth: 10,)
                   ),
                   const SizedBox(height: 10,),
                   Text('$progress%', style: const TextStyle(color: Colors.black, fontSize: 30, fontWeight: FontWeight.bold)),

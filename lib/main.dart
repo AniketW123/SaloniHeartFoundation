@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:saloni_heart_foundation/pages/contact_page.dart';
-import 'package:saloni_heart_foundation/pages/donate_page.dart';
-import 'package:saloni_heart_foundation/pages/information_page.dart';
-import 'package:saloni_heart_foundation/util/alerts.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'pages/home_page.dart';
+import 'pages/parent_portal_page.dart';
+import 'pages/second_opinion_page.dart';
+import 'pages/about_page.dart';
+import '../util/alerts.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -27,8 +27,53 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   int selectedIndex = 0;
-  List<Widget> pages = [HomePage(), InformationPage(), ContactPage(), DonatePage()];
-  List<String> titles = ['Home', 'Information', 'Contact', 'Donate'];
+  List<Widget> pages = [const HomePage(), const ParentPortalPage(), const SecondOpinionPage(), const DonatePage()];
+  List<String> titles = ['Home', 'Parent Portal', 'Second Opinion', 'About Us'];
+
+  void chooseLanguage () async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    if (prefs.getBool('chosen_language') != true) {
+      showDialog(
+          context: context,
+          barrierDismissible: false,
+          builder: (_) => StatefulBuilder(
+              builder: (context, setState) {
+                return AlertDialog(
+                  title: const Text('Choose Your Language / अपनी भाषा चुनें'),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                  content: DropdownButton(
+                    items: const [
+                      DropdownMenuItem(value: 'EN', child: Text('EN'),),
+                      DropdownMenuItem(value: 'HI', child: Text('HI'),),
+                    ],
+                    isExpanded: true,
+                    value: languageDropdownValue,
+                    onChanged: (value) {
+                      if (value is String) {
+                        setState(() {
+                          languageDropdownValue = value;
+                        });
+                      }
+                    },
+                  ),
+                  actions: [
+                    AlertButton(
+                        title: 'OK',
+                        onPressed: () {
+                          language = languageDropdownValue;
+                          prefs.setBool('language_chosen', true);
+                          Navigator.pop(context);
+                        }
+                    ),
+                  ],
+                );
+              }
+          )
+      );
+    }
+  }
 
   @override
   void initState() {
@@ -37,6 +82,7 @@ class _MyAppState extends State<MyApp> {
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
     ]);
+    chooseLanguage();
   }
 
   @override
@@ -111,22 +157,22 @@ class _MyAppState extends State<MyApp> {
         selectedItemColor: Colors.pinkAccent,
         showUnselectedLabels: true,
         currentIndex: selectedIndex,
-        items: const [
+        items: [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: "Home",
+            icon: const Icon(Icons.home),
+            label: titles.elementAt(0),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.info),
-            label: "Information",
+            icon: const Icon(Icons.info),
+            label: titles.elementAt(1),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.contact_support),
-            label: "Contact",
+            icon: const Icon(Icons.contact_support),
+            label: titles.elementAt(2),
           ),
           BottomNavigationBarItem(
-            icon: Icon(CupertinoIcons.heart_fill),
-            label: "Donate",
+            icon: const Icon(Icons.people),
+            label: titles.elementAt(3),
           ),
         ],
         onTap: (int index) {

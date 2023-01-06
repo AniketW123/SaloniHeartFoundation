@@ -41,9 +41,7 @@ class _HomePageState extends State<HomePage> {
               color: Colors.blue.shade900.withOpacity(0.7),
               body: Column(
                 children: [
-                  ListTile(
 
-                  ),
                 ],
               )
           )
