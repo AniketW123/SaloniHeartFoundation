@@ -15,11 +15,7 @@ class _PatientIntakeFormState extends State<PatientIntakeForm> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.blue.shade900,
-        leading: Padding(
-          padding: const EdgeInsets.all(5),
-          child: Image.asset('assets/images/SaloniHeartFoundationLogo.png'),
-        ),
-        title: Center(child: Text('Patient Intake Form')),
+        title: const Center(child: Text('Patient Intake Form')),
         actions: [
           IconButton(
               onPressed: () {
