@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 import '../main.dart';
 import '../util/alerts.dart';
 
@@ -10,6 +11,27 @@ class PatientIntakeForm extends StatefulWidget {
 }
 
 class _PatientIntakeFormState extends State<PatientIntakeForm> {
+  late WebViewController controller;
+  int progress = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    controller = WebViewController();
+    controller.setNavigationDelegate(NavigationDelegate(
+      onNavigationRequest: (NavigationRequest request) {
+        return NavigationDecision.navigate;
+      },
+      onProgress: (int p) {
+        setState(() {
+          progress = p;
+        });
+      }
+    ));
+    controller.setJavaScriptMode(JavaScriptMode.unrestricted);
+    controller.loadRequest(Uri.parse('https://docs.google.com/forms/d/e/1FAIpQLSeEfJ5ovI6TGYhY6kL-o2DHN8dT1r5MpyPGFQ6JOaQAm1xaOQ/viewform?usp=sf_link'));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,56 +40,32 @@ class _PatientIntakeFormState extends State<PatientIntakeForm> {
         title: const Center(child: Text('Patient Intake Form')),
         actions: [
           IconButton(
-              onPressed: () {
-                showDialog(
-                    context: context,
-                    barrierDismissible: false,
-                    builder: (_) => StatefulBuilder(
-                        builder: (context, setState) {
-                          return AlertDialog(
-                            title: const Text('Change Language'),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10.0),
-                            ),
-                            content: DropdownButton(
-                              items: const [
-                                DropdownMenuItem(value: 'EN', child: Text('EN'),),
-                                DropdownMenuItem(value: 'HI', child: Text('HI'),),
-                              ],
-                              isExpanded: true,
-                              value: languageDropdownValue,
-                              onChanged: (value) {
-                                if (value is String) {
-                                  setState(() {
-                                    languageDropdownValue = value;
-                                  });
-                                }
-                              },
-                            ),
-                            actions: [
-                              AlertButton(
-                                  title: 'OK',
-                                  onPressed: () {
-                                    language = languageDropdownValue;
-                                    Navigator.pop(context);
-                                  }
-                              ),
-                              AlertButton(
-                                title: 'Cancel',
-                                onPressed: () {
-                                  languageDropdownValue = language;
-                                  Navigator.pop(context);
-                                },
-                              ),
-                            ],
-                          );
-                        }
-                    )
-                );
-              },
-              icon: const Icon(Icons.language)
+              onPressed: (){},
+              icon: Icon(Icons.language, color: Colors.blue.withOpacity(0))
           ),
         ],
+      ),
+      body: SafeArea(
+        child: Stack(
+          children: [
+            WebViewWidget(controller: controller),
+            progress == 100 ? const SizedBox():
+            Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const SizedBox(
+                      width: 100,
+                      height: 100,
+                      child: CircularProgressIndicator(color: Colors.black, strokeWidth: 10,)
+                  ),
+                  const SizedBox(height: 10,),
+                  Text('$progress%', style: const TextStyle(color: Colors.black, fontSize: 30, fontWeight: FontWeight.bold)),
+                ],
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

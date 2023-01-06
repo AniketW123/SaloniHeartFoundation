@@ -1,5 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:saloni_heart_foundation/pages/patient_intake_form_page.dart';
+import 'package:flutter/services.dart';
+import 'dart:io';
+import 'dart:async';
+import 'package:path_provider/path_provider.dart';
+import '../main.dart';
+import '../pages/patient_intake_form.dart';
+import '../pages/sample_form.dart';
 import '../util/buttons.dart';
 import '../util/listtiles.dart';
 
@@ -11,6 +17,31 @@ class SecondOpinionPage extends StatefulWidget {
 }
 
 class _SecondOpinionPageState extends State<SecondOpinionPage> {
+  String path = '';
+  Future<File> fromAsset(String asset, String filename) async {
+    Completer<File> completer = Completer();
+    try {
+      var dir = await getApplicationDocumentsDirectory();
+      File file = File("${dir.path}/$filename");
+      var data = await rootBundle.load(asset);
+      var bytes = data.buffer.asUint8List();
+      await file.writeAsBytes(bytes, flush: true);
+      completer.complete(file);
+    } catch (e) {
+      throw Exception('Error parsing asset file!');
+    }
+    return completer.future;
+  }
+
+  void initState() {
+    super.initState();
+    fromAsset('assets/PDFs/SamplePatientIntakeForm-$language.pdf', 'SamplePatientIntakeForm-$language.pdf').then((f) {
+      setState(() {
+        path = f.path;
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return RoundedListTile(
@@ -34,6 +65,13 @@ class _SecondOpinionPageState extends State<SecondOpinionPage> {
             RoundedButton(
               text: 'Sample Form',
               color: Colors.pinkAccent,
+              onPressed: () {
+                print(path);
+                if (path.isNotEmpty) {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => SampleForm(path: path,)));
+                }
+
+              },
             ),
           ],
         ),

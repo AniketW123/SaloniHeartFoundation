@@ -32,6 +32,8 @@ dependencies:
   cupertino_icons: ^1.0.3
   webview_flutter: ^4.0.1
   shared_preferences: ^2.0.15
+  flutter_pdfview: ^1.2.5
+  path_provider: ^2.0.11
 
 dev_dependencies:
   flutter_test:
@@ -43,12 +45,8 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-   - assets/images/SaloniHeartFoundationLogo.png
-   - assets/images/HomeBackground.jpg
-   - assets/images/InfoImage1.jpg
-#   - assets/images/InfoImage2.jpg
-   - assets/images/InfoImage3.jpg
-   - assets/images/InfoImage5.jpg
+   - assets/images/
+   - assets/PDFs/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
