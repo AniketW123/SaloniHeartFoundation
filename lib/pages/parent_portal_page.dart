@@ -20,6 +20,7 @@ class _ParentPortalPageState extends State<ParentPortalPage> {
       child: ListView(
         children: [
           ImageListTile(
+            padding: EdgeInsets.only(top: spacing),
             image: 'assets/images/InfoImage1.jpg',
             onPressed: () {
               Navigator.push(context, MaterialPageRoute(builder: (context) => const ParentPortalWebView(page: 'copy-of-how-does-a-normal-heart-work-1')));

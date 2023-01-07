@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
-import '../main.dart';
 import '../util/alerts.dart';
 
 class PatientIntakeForm extends StatefulWidget {
@@ -20,7 +19,11 @@ class _PatientIntakeFormState extends State<PatientIntakeForm> {
     controller = WebViewController();
     controller.setNavigationDelegate(NavigationDelegate(
       onNavigationRequest: (NavigationRequest request) {
-        return NavigationDecision.navigate;
+        if (request.url.contains('https://docs.google.com/forms/')) {
+          return NavigationDecision.navigate;
+        }
+        alert(context: context, title: 'An error occurred. Please try again');
+        return NavigationDecision.prevent;
       },
       onProgress: (int p) {
         setState(() {

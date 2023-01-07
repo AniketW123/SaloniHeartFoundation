@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'dart:io';
+import 'dart:async';
+import 'package:path_provider/path_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'pages/home_page.dart';
 import 'pages/parent_portal_page.dart';
@@ -17,6 +20,22 @@ void main() {
 
 String language = 'EN';
 String languageDropdownValue = 'EN';
+String sampleFormPath = '';
+
+Future<File> fromAsset(String asset, String filename) async {
+  Completer<File> completer = Completer();
+  try {
+    var dir = await getApplicationDocumentsDirectory();
+    File file = File("${dir.path}/$filename");
+    var data = await rootBundle.load(asset);
+    var bytes = data.buffer.asUint8List();
+    await file.writeAsBytes(bytes, flush: true);
+    completer.complete(file);
+  } catch (e) {
+    throw Exception('Error parsing asset file!');
+  }
+  return completer.future;
+}
 
 class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -89,7 +108,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return Scaffold(
       //TODO: add language option
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.blueGrey.shade200,
       appBar: AppBar(
         backgroundColor: Colors.blue.shade900,
         leading: Padding(
@@ -129,7 +148,14 @@ class _MyAppState extends State<MyApp> {
                               AlertButton(
                                   title: 'OK',
                                   onPressed: () {
-                                    language = languageDropdownValue;
+                                    setState(() {
+                                      language = languageDropdownValue;
+                                    });
+                                    fromAsset('assets/PDFs/SamplePatientIntakeForm-$language.pdf', 'SamplePatientIntakeForm-$language.pdf').then((f) {
+                                      setState(() {
+                                        sampleFormPath = f.path;
+                                      });
+                                    });
                                     Navigator.pop(context);
                                   }
                               ),
@@ -145,6 +171,7 @@ class _MyAppState extends State<MyApp> {
                       }
                   )
               );
+
             },
             icon: const Icon(Icons.language)
           ),

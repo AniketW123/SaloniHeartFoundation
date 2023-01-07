@@ -36,15 +36,6 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
           ),
-          RoundedListTile(
-              title: 'Events',
-              color: Colors.blue.shade900.withOpacity(0.7),
-              body: Column(
-                children: [
-
-                ],
-              )
-          )
         ],
       ),
     );

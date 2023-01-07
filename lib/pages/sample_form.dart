@@ -1,10 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'dart:io';
-import 'dart:async';
 import 'package:flutter_pdfview/flutter_pdfview.dart';
-import 'package:path_provider/path_provider.dart';
-import '../main.dart';
 import '../util/alerts.dart';
 
 class SampleForm extends StatefulWidget {
@@ -19,7 +14,7 @@ class _SampleFormState extends State<SampleForm> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blueGrey,
+      backgroundColor: Colors.blueGrey.shade200,
       appBar: AppBar(
         backgroundColor: Colors.blue.shade900,
         title: const Center(child: Text('Sample Form')),
@@ -32,7 +27,7 @@ class _SampleFormState extends State<SampleForm> {
       ),
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(20),
+          padding: const EdgeInsets.all(15),
           child: PDFView(
             filePath: widget.path,
             onError: (error) {

@@ -1,8 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'dart:io';
-import 'dart:async';
-import 'package:path_provider/path_provider.dart';
 import '../main.dart';
 import '../pages/patient_intake_form.dart';
 import '../pages/sample_form.dart';
@@ -17,27 +13,12 @@ class SecondOpinionPage extends StatefulWidget {
 }
 
 class _SecondOpinionPageState extends State<SecondOpinionPage> {
-  String path = '';
-  Future<File> fromAsset(String asset, String filename) async {
-    Completer<File> completer = Completer();
-    try {
-      var dir = await getApplicationDocumentsDirectory();
-      File file = File("${dir.path}/$filename");
-      var data = await rootBundle.load(asset);
-      var bytes = data.buffer.asUint8List();
-      await file.writeAsBytes(bytes, flush: true);
-      completer.complete(file);
-    } catch (e) {
-      throw Exception('Error parsing asset file!');
-    }
-    return completer.future;
-  }
-
+  @override
   void initState() {
     super.initState();
     fromAsset('assets/PDFs/SamplePatientIntakeForm-$language.pdf', 'SamplePatientIntakeForm-$language.pdf').then((f) {
       setState(() {
-        path = f.path;
+        sampleFormPath = f.path;
       });
     });
   }
@@ -54,7 +35,7 @@ class _SecondOpinionPageState extends State<SecondOpinionPage> {
               textAlign: TextAlign.justify,
               style: TextStyle(color: Colors.white, fontSize: 20),
             ),
-            Expanded(child: SizedBox()),
+            const Expanded(child: SizedBox()),
             RoundedButton(
               text: 'Patient Intake Form',
               color: Colors.pinkAccent,
@@ -66,11 +47,9 @@ class _SecondOpinionPageState extends State<SecondOpinionPage> {
               text: 'Sample Form',
               color: Colors.pinkAccent,
               onPressed: () {
-                print(path);
-                if (path.isNotEmpty) {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => SampleForm(path: path,)));
+                if (sampleFormPath.isNotEmpty) {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => SampleForm(path: sampleFormPath,)));
                 }
-
               },
             ),
           ],
