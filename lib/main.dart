@@ -102,7 +102,8 @@ class _MyAppState extends State<MyApp> {
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
     ]);
-    chooseLanguage();
+    // chooseLanguage();
+    //TODO: uncomment
   }
 
   @override
