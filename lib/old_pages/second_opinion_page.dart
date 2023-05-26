@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../main.dart';
-import '../pages/patient_intake_form.dart';
-import '../pages/sample_form.dart';
+import '../old_pages/patient_intake_form.dart';
+import '../old_pages/sample_form.dart';
 import '../util/buttons.dart';
 import '../util/listtiles.dart';
 

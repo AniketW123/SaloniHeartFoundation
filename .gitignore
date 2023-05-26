@@ -48,3 +48,6 @@ app.*.map.json
 
 #app notes
 shf.txt
+
+#old pages
+lib/old_pages/

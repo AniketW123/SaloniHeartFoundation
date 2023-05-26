@@ -4,10 +4,11 @@ import 'dart:io';
 import 'dart:async';
 import 'package:path_provider/path_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'pages/home_page.dart';
-import 'pages/parent_portal_page.dart';
-import 'pages/second_opinion_page.dart';
-import 'pages/about_page.dart';
+import 'pages/about_us_page.dart';
+import 'pages/faq_page.dart';
+import 'pages/videos_page.dart';
+import 'pages/organizations_page.dart';
+import 'pages/financial_aid_page.dart';
 import '../util/alerts.dart';
 
 void main() {
@@ -46,8 +47,8 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   int selectedIndex = 0;
-  List<Widget> pages = [const HomePage(), const ParentPortalPage(), const SecondOpinionPage(), const DonatePage()];
-  List<String> titles = ['Home', 'Parent Portal', 'Second Opinion', 'About Us'];
+  List<Widget> pages = [const AboutUsPage(), const FAQPage(), const VideosPage(), const OrganizationsPage(), const FinancialAidPage()];
+  List<String> titles = ['About Us', 'FAQs', 'Videos', 'Organizations', 'Financial Aid'];
 
   void chooseLanguage () async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -186,20 +187,24 @@ class _MyAppState extends State<MyApp> {
         currentIndex: selectedIndex,
         items: [
           BottomNavigationBarItem(
-            icon: const Icon(Icons.home),
+            icon: const Icon(Icons.people),
             label: titles.elementAt(0),
           ),
           BottomNavigationBarItem(
-            icon: const Icon(Icons.info),
+            icon: const Icon(Icons.question_mark),
             label: titles.elementAt(1),
           ),
           BottomNavigationBarItem(
-            icon: const Icon(Icons.contact_support),
+            icon: const Icon(Icons.video_collection),
             label: titles.elementAt(2),
           ),
           BottomNavigationBarItem(
-            icon: const Icon(Icons.people),
+            icon: const Icon(Icons.home_work),
             label: titles.elementAt(3),
+          ),
+          BottomNavigationBarItem(
+            icon: const Icon(Icons.monetization_on),
+            label: titles.elementAt(4),
           ),
         ],
         onTap: (int index) {

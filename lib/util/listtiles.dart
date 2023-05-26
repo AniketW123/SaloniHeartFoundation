@@ -18,11 +18,12 @@ class RoundedListTile extends StatelessWidget {
         borderRadius: const BorderRadius.all(Radius.circular(10)),
       ),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
             title != null ? Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Text(title!, style: const TextStyle(fontSize: 30, color: Colors.white))
-          ):const SizedBox(),
+              padding: EdgeInsets.only(bottom: 8),
+              child: Center(child: Text(title!, style: const TextStyle(fontSize: 30, color: Colors.white),))
+            ):const SizedBox(),
           body
         ],
       ),

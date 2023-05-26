@@ -19,10 +19,11 @@ class _PatientIntakeFormState extends State<PatientIntakeForm> {
     controller = WebViewController();
     controller.setNavigationDelegate(NavigationDelegate(
       onNavigationRequest: (NavigationRequest request) {
-        if (request.url.contains('https://docs.google.com/forms/')) {
+        if (request.url.contains('https://docs.google.com/') || request.url.contains('https://accounts.google.com/')) {
           return NavigationDecision.navigate;
         }
-        alert(context: context, title: 'An error occurred. Please try again');
+
+        alert(context: context, title: 'An error occurred. Please try again. ${request.url}');
         return NavigationDecision.prevent;
       },
       onProgress: (int p) {

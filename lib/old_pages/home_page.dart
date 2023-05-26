@@ -16,13 +16,13 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Container(
       decoration: const BoxDecoration(
-        image: DecorationImage(image: AssetImage('assets/images/HomeBackground.jpg'), fit: BoxFit.cover),
+        // image: DecorationImage(image: AssetImage('assets/images/HomeBackground.jpg'), fit: BoxFit.cover),
       ),
       child: ListView(
         children: [
           RoundedListTile(
             title: 'Our Mission',
-            color: Colors.blue.shade900.withOpacity(0.7),
+            color: Colors.blue.shade900,
             body: RichText(
               text: TextSpan(
                 children: [
