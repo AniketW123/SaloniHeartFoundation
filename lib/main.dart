@@ -84,6 +84,7 @@ class _MyAppState extends State<MyApp> {
                         onPressed: () {
                           language = languageDropdownValue;
                           prefs.setBool('language_chosen', true);
+                          //TODO: updateFAQListTiles
                           Navigator.pop(context);
                         }
                     ),
