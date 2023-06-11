@@ -6,13 +6,13 @@ class RoundedListTile extends StatelessWidget {
   final Widget body;
   final Color? color;
 
-  RoundedListTile({this.title, this.titleStyle, required this.body, this.color});
+  const RoundedListTile({super.key, this.title, this.titleStyle, required this.body, this.color});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(20),
-      margin: const EdgeInsets.all(20),
+      padding: const EdgeInsets.all(15),
+      margin: const EdgeInsets.all(5),
       decoration: BoxDecoration(
         color: color ?? Colors.white,
         borderRadius: const BorderRadius.all(Radius.circular(10)),
@@ -21,8 +21,8 @@ class RoundedListTile extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
             title != null ? Padding(
-              padding: EdgeInsets.only(bottom: 8),
-              child: Center(child: Text(title!, style: const TextStyle(fontSize: 30, color: Colors.white),))
+              padding: const EdgeInsets.only(bottom: 8),
+              child: Center(child: Text(title!, style: titleStyle ?? const TextStyle(fontSize: 30, color: Colors.black),))
             ):const SizedBox(),
           body
         ],
@@ -37,7 +37,7 @@ class ImageListTile extends StatelessWidget {
   final EdgeInsetsGeometry? padding;
   final VoidCallback? onPressed;
 
-  ImageListTile({required this.image, required this.body, this.padding, this.onPressed});
+  const ImageListTile({super.key, required this.image, required this.body, this.padding, this.onPressed});
 
   @override
   Widget build(BuildContext context) {

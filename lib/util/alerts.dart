@@ -24,7 +24,7 @@ class AlertButton extends StatelessWidget {
   final Color? textColor;
   final VoidCallback? onPressed;
 
-  AlertButton({required this.title, this.textColor, this.onPressed});
+  const AlertButton({super.key, required this.title, this.textColor, this.onPressed});
 
   @override
   Widget build(BuildContext context) {

@@ -10,8 +10,6 @@ class OrganizationsPage extends StatefulWidget {
 class _OrganizationsPageState extends State<OrganizationsPage> {
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      children: [],
-    );
+    return const Placeholder();
   }
 }

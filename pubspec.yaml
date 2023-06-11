@@ -24,10 +24,8 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.3
-  webview_flutter: ^4.0.1
   shared_preferences: ^2.0.15
-  flutter_pdfview: ^1.2.5
-  path_provider: ^2.0.11
+  appinio_video_player: ^1.2.1
 
 dev_dependencies:
   flutter_test:
@@ -36,11 +34,10 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
-
-  # To add assets to your application, add an assets section, like this:
   assets:
    - assets/images/
-   - assets/PDFs/
+   - assets/images/TeamMembers/
+   - assets/videos/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
