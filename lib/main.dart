@@ -29,8 +29,8 @@ class _MyAppState extends State<MyApp> {
   int languageDropdownValue = 0;
 
   int selectedIndex = 0;
-  late List<Widget> pages = [const AboutUsPage(), FAQPage(language: language, key: ValueKey(language),), const VideosPage(), const OrganizationsPage(), const FinancialAidPage()];
-  List<String> titles = ['About Us', 'FAQs', 'Videos', 'Organizations', 'Financial Aid'];
+  late List<Widget> pages = [const AboutUsPage(), FAQPage(language: language, key: ValueKey(language),), const VideosPage(), const FinancialAidPage()];
+  List<String> titles = ['About Us', 'FAQs', 'Videos', 'Financial Aid'];
 
   void chooseLanguage (bool fromButton) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -79,8 +79,6 @@ class _MyAppState extends State<MyApp> {
       language = prefs.getInt('language') ?? 0;
     }
   }
-
-  //TODO: make setstate function for updating the list of widgets
 
   @override
   void initState() {
